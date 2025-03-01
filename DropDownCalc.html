@@ -1,0 +1,47 @@
+<html>
+<head>
+	<style>
+	
+	</style>
+
+</head>
+<body>
+<input id='num1' type="number" oninput='operate()'>
+  <select name="operators" id="op" onchange='operate()'>
+    <option value="sum">+</option>
+    <option value="sub">-</option>
+    <option value="mul">*</option>
+    <option value="div">/</option>
+  </select>
+<input id='num2' type="number" oninput='operate()'>
+
+<button type="button" onclick='operate()'>=</button>
+<label></label>
+
+<script>
+	function operate(){
+	let x =  Number(document.querySelector('#num1').value);
+	
+	let y =  Number(document.querySelector('#num2').value);
+	let op = document.querySelector('#op').value;
+	let result = 0;
+	if(op == 'sum'){
+		result = x+y;
+	} else if( op == 'sub'){
+		result = x-y;
+	
+	} else if ( op == 'mul'){
+		result = x*y;
+	} else if(op == 'div'){
+		result = x/y;
+	}
+	
+	
+	document.querySelector('label').innerText= result;
+	}
+</script>
+
+
+</body>
+
+</html>
