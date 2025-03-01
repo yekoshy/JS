@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simple Calculator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .calculator {
+      text-align: center;
+    }
+    input, select, button {
+      margin: 5px;
+      padding: 5px;
+      font-size: 14px;
+    }
+    #result {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="calculator">
+    <h2>Calculator</h2>
+    <div>
+      <input type="number" id="value1" placeholder="first value" oninput="calculate()">
+      <input type="number" id="value2" placeholder="Second value" oninput="calculate()">
+    </div>
+    <div>
+      <select id="operation" onchange="calculate()">
+        <option value="+">+</option>
+        <option value="-">-</option>
+        <option value="*">*</option>
+        <option value="/">/</option>
+      </select>
+      <button onclick="calculate()">Calculate</button>
+    </div>
+    <div id="result"></div>
+  </div>
+
+  <script>
+    function calculate() {
+      const value1 = parseFloat(document.getElementById('value1').value);
+      const value2 = parseFloat(document.getElementById('value2').value);
+      const operation = document.getElementById('operation').value;
+      let result;
+
+      if (isNaN(value1) || isNaN(value2)) {
+        document.getElementById('result').textContent = "Enter valid numbers.";
+        return;
+      }
+
+      switch (operation) {
+        case '+':
+          result = value1 + value2;
+          break;
+        case '-':
+          result = value1 - value2;
+          break;
+        case '*':
+          result = value1 * value2;
+          break;
+        case '/':
+          if (value2 === 0) {
+            document.getElementById('result').textContent = "Cannot divide by zero.";
+            return;
+          }
+          result = value1 / value2;
+          break;
+        default:
+          result = "Invalid operation.";
+      }
+
+      document.getElementById('result').textContent = `Result: ${result}`;
+    }
+  </script>
+</body>
+</html>
