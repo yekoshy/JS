@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Resizer</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 50px;
+    }
+    .container {
+      text-align: center;
+    }
+    img {
+      display: block;
+      margin: 20px auto;
+      border: 2px solid #333;
+    }
+    .controls {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+    .controls div {
+      display: flex;
+      gap: 10px;
+    }
+    input {
+      padding: 5px;
+      text-align: center;
+    }
+    button {
+      padding: 5px 10px;
+      cursor: pointer;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <img id="image" src="Bavaro-beach.jpeg" alt="Bavaro Beach">
+    <div class="controls">
+      <input type="text" id="imageLink" placeholder="Enter image URL" style="width: 300px;">
+      <button onclick="updateImage()">Update Image</button>
+      <div>
+        <input type="number" id="width" placeholder="Width" min="10" max="200">
+        <input type="number" id="height" placeholder="Height" min="10" max="200">
+        <button onclick="resizeImage()">Change</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function updateImage() {
+      const imageLink = document.getElementById('imageLink').value;
+      const image = document.getElementById('image');
+      if (imageLink) {
+        image.src = imageLink;
+      } else {
+        alert('Please enter a valid image URL.');
+      }
+    }
+
+    function resizeImage() {
+      const widthInput = document.getElementById('width');
+      const heightInput = document.getElementById('height');
+      const image = document.getElementById('image');
+
+      let width = parseInt(widthInput.value);
+      let height = parseInt(heightInput.value);
+
+      // Validate inputs
+      if (isNaN(width) || width < 10 || width > 200) {
+        alert('Please enter a width value between 10 and 200.');
+        return;
+      }
+      if (isNaN(height) || height < 10 || height > 200) {
+        alert('Please enter a height value between 10 and 200.');
+        return;
+      }
+
+      // Update image dimensions
+      image.style.width = `${width}px`;
+      image.style.height = `${height}px`;
+    }
+  </script>
+</body>
+</html>
