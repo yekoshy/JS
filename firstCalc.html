@@ -1,0 +1,30 @@
+<html>
+<head>
+	<style>
+	
+	</style>
+
+</head>
+<body>
+<input id='num1' type="number" onchange='operate()' oninput='operate()'>
+-
+<input id='num2' type="number" onchange='operate()' oninput='operate()'>
+
+<button type="button" onclick='operate()'>=</button>
+<label></label>
+
+<script>
+	function operate(){
+	let x =  Number(document.querySelector('#num1').value);
+	
+	let y =  Number(document.querySelector('#num2').value);
+	
+	let result = x-y;
+	document.querySelector('label').innerText= result;
+	}
+</script>
+
+
+</body>
+
+</html>
